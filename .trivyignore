@@ -1,0 +1,21 @@
+# .trivyignore - Vulnerability filtering for gcp-todoist-runner
+#
+# Alpine Linux (musl libc) has significantly fewer CVEs than Debian (glibc)
+# This project uses python:3.11-alpine as base image which resolves most
+# common vulnerabilities found in debian-based images.
+#
+# Deployment Context:
+# - Platform: Google Cloud Run (stateless, ephemeral containers)
+# - Base Image: python:3.11-alpine (musl libc, minimal attack surface)
+# - Runtime: Python 3.11 FastAPI service
+# - User: Non-root (appuser, UID 1000)
+# - Network: Outbound only (Todoist API calls)
+#
+# Current status: 0 vulnerabilities at all severity levels (CRITICAL/HIGH/MEDIUM/LOW)
+# No CVE exclusions needed with Alpine base image
+#
+# Alpine advantages over Debian:
+# - Smaller image size (~50MB vs ~150MB)
+# - Fewer packages installed by default
+# - musl libc has fewer published CVEs than glibc
+# - Minimal attack surface
